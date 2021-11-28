@@ -48,6 +48,7 @@ genre_services  = movies.aggregate(
 genre_dict= {}
 print("Please Choose the following genres")
 for index, genre in enumerate(genre_services):
+    print (genre)
     genre_dict[index] = genre
     print(str(index) + ". " + genre['_id']['Genre'])
 
