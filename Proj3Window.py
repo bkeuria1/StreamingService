@@ -4,7 +4,7 @@ import pprint
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
-from Tkinter import *
+from tkinter import *
 
 
 
@@ -59,7 +59,7 @@ temp = compare_maximum(streaming_results)
 values = temp[1]
 rects = ax.bar(streaming_names, values, width)
 canvas = FigureCanvasTkAgg(fig, master=window)
-canvas.show()
+canvas.draw()
 canvas.get_tk_widget().pack(side='top', fill='both', expand=1)
 # runs the gui
 window.mainloop()
