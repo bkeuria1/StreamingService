@@ -68,7 +68,5 @@ service_result = np.array([value for value in service_dict.values() if value!=0]
 plot_title = "Number of Movies and Shows in " + language['_id']['Language'] +" On Prime Video, Hulu, Netflix and Disney+"
 plt.title(plot_title.format(plot_title))
 plt.pie(service_result, labels = service_lables, autopct='%1.1f%%', shadow = True)
-
-    
 plt.show()
 
