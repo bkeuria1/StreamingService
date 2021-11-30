@@ -25,7 +25,7 @@ def service_language():
 
     os.system('python service-language.py')
 
-def service_rating():
+def service_ratings():
     os.system('python service-ratings.py')
 
 
@@ -35,6 +35,6 @@ genreBtn.grid(column=0, row=0)
 languageBtn = Button(window, text="Language Spoken?", bg="black", fg="white",command=service_language)
 languageBtn.grid(column=0, row=4)
 
-ratingsBtn = Button(window, text="Better Ratings?", bg="black", fg="white",command=service_language)
+ratingsBtn = Button(window, text="Better Ratings?", bg="black", fg="white",command=service_ratings)
 ratingsBtn.grid(column=0, row=6)
 window.mainloop()
