@@ -33,20 +33,23 @@ Return Max results
 """
 streaming_results = []
 values = []
+labels =  []
+results = []
 for x in range(4):
     stream_list = list(streaming_cursors[x])
     num_items = len(stream_list)
-    streaming_results.append((streaming_names[x], num_items))
-Max = 0
-Winner = None
-for item, _tuple in enumerate(streaming_results):
-    title = _tuple[0]
-    num = _tuple[1]
-    values.append(num)
-    if num > Max:
-        Max = _tuple[1]
-        Winner = _tuple
-pprint.pprint(Winner)
+    #streaming_results.append((streaming_names[x], num_items))
+    labels.append(streaming_names[x])
+    results.append(num_items)
+    print(num_items)
+barColors= ['red', 'green','blue','orange']
+plt.bar(labels, results, color= barColors)
+plt.title('Streaming Services with Most International Outreach')
+plt.xlabel("Service Name")
+plt.ylabel("Number of Films and Shows")
+plt.show()
+
+
 '''
 fig = plt.figure()
 ax = fig.add_axes([0, 0, 1, 1])

@@ -94,7 +94,7 @@ def select_Genres(Genres_choice):
     #remove values for the chart that have 
     service_lables = np.array([key for key,value in service_dict.items() if value!=0])
     service_result = np.array([value for value in service_dict.values() if value!=0])
-    plot_title = "Movies and Shows in " + Genres['_id']['Genres'] +" On Prime Video, Hulu, Netflix and Disney+"
+    plot_title = Genres['_id']['Genres']+ " Movies and Shows"  +" On Prime Video, Hulu, Netflix and Disney+"
     plt.title(plot_title.format(plot_title))
     plt.pie(service_result, labels = service_lables, autopct='%1.1f%%', shadow = True)
     plt.show()
@@ -118,5 +118,7 @@ for index, Genres in enumerate(Genres_services):
     
    
 
-    print(str(index) + ". " + Genres['_id']['Genres'])
+    #print(str(index) + ". " + Genres['_id']['Genres'])
+
+
 win.mainloop()

@@ -3,9 +3,12 @@ from pymongo import MongoClient
 from random import randint
 import matplotlib.pyplot as plt
 import numpy as np
-from tkinter import *
+
+from tkinter import * 
 import tkinter.font as font
+
 from tkinter import ttk
+import threading
 #Step 1: Connect to MongoDB - Note: Change connection string as needed
 #mongodb+srv://bkeuria1:%40BingBong3779@cluster0.oa5dd.mongodb.net/Project3?retryWrites=true&w=majority
 client = MongoClient('mongodb://localhost:27017/')
@@ -26,6 +29,7 @@ canvas = Canvas(main_frame)
 canvas.pack(pady = 20, side=LEFT,fill=BOTH, expand=1)
 
 scrollbar = ttk.Scrollbar(main_frame,orient=VERTICAL, command=canvas.yview)
+scrollbar.pack(side=RIGHT, fill = Y)
 scrollbar.pack(side=RIGHT, fill = Y)
 
 canvas.configure(yscrollcommand=scrollbar.set)
@@ -119,6 +123,8 @@ for index, language in enumerate(language_services):
    
 
     print(str(index) + ". " + language['_id']['Language'])
+
 win.mainloop()
+
 
 
