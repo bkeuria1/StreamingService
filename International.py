@@ -6,17 +6,19 @@ client = MongoClient(
     'mongodb+srv://eezor1:P%40lkij123@cluster0.oa5dd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
 db = client.Project3
 collection = db.MovieStuff
-net_cursor = collection.find({"$and": [{'Netflix': '1'}, {"$or": [{"Country": {"$not": {"$regex": "United States"}}},
+net_cursor = collection.find({"$and": [{'Netflix': '1'}, {"$and": [{"Country": {"$not": {"$regex": "United States"}}},
                                                                   {"Language": {"$not": {"$regex": "English"}}}]}]})
-hul_cursor = collection.find({"$and": [{'Hulu': '1'}, {"$or": [{"Country": {"$not": {"$regex": "United States"}}},
+hul_cursor = collection.find({"$and": [{'Hulu': '1'}, {"$and": [{"Country": {"$not": {"$regex": "United States"}}},
                                                                {"Language": {"$not": {"$regex": "English"}}}]}]})
-dis_cursor = collection.find({"$and": [{'Disney+': '1'}, {"$or": [{"Country": {"$not": {"$regex": "United States"}}},
+dis_cursor = collection.find({"$and": [{'Disney+': '1'}, {"$and": [{"Country": {"$not": {"$regex": "United States"}}},
                                                                   {"Language": {"$not": {"$regex": "English"}}}]}]})
-prime_cursor = collection.find({"$and": [{'Prime Video': '1'}, {"$or":
+prime_cursor = collection.find({"$and": [{'Prime Video': '1'}, {"$and":
                                                                     [{"Country": {"$not": {"$regex": "United States"}}},
                                                                      {"Language": {"$not": {"$regex": "English"}}}]}]})
 streaming_cursors = [net_cursor, hul_cursor, dis_cursor, prime_cursor]
 streaming_names = ["Netflix", "Hulu", "Disney+", "Prime Video"]
+
+
 
 """
 Query: Find the streaming service which has the best movies for kids
@@ -31,6 +33,7 @@ For X in Streaming Services:
     add tuple to array Results
 Return Max results 
 """
+
 streaming_results = []
 values = []
 labels =  []
@@ -48,11 +51,3 @@ plt.title('Streaming Services with Most International Outreach')
 plt.xlabel("Service Name")
 plt.ylabel("Number of Films and Shows")
 plt.show()
-
-
-'''
-fig = plt.figure()
-ax = fig.add_axes([0, 0, 1, 1])
-ax.bar(streaming_names, values)
-plt.show()
-'''
