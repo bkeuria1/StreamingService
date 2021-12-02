@@ -33,32 +33,10 @@ For X in Streaming Services:
     add tuple to array Results
 Return Max results 
 """
-streaming_results = []
-values = []
-for x in range(4):
-    stream_list = list(streaming_cursors[x])
-    num_items = len(stream_list)
-    streaming_results.append((streaming_names[x], num_items))
-Max = 0
-Winner = None
-for item, _tuple in enumerate(streaming_results):
-    title = _tuple[0]
-    num = _tuple[1]
-    values.append(num)
-    if num > Max:
-        Max = _tuple[1]
-        Winner = _tuple
-pprint.pprint(Winner)
-'''
-fig = plt.figure()
-ax = fig.add_axes([0, 0, 1, 1])
-ax.bar(streaming_names, values)
-plt.show()
-'''
 
 streaming_results = []
 values = []
-labels = []
+labels =  []
 results = []
 for x in range(4):
     stream_list = list(streaming_cursors[x])
@@ -73,4 +51,3 @@ plt.title('Streaming Services with Most International Outreach')
 plt.xlabel("Service Name")
 plt.ylabel("Number of Films and Shows")
 plt.show()
-
