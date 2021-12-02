@@ -1,3 +1,4 @@
+
 from typing import Collection
 from pymongo import MongoClient
 from random import randint
@@ -35,7 +36,7 @@ rotten_tomatoes_avg = [find_average(prime,"Rotten Tomatoes"), find_average(disne
 IMDb_avg = [find_average(prime,"IMDb"), find_average(disney,"IMDb"), find_average(hulu,"IMDb"), find_average(netflix,"IMDb")]
 
 x = np.arange(len(labels))  # the label locations
-width = 0.35  # the width of the bars
+width = 0.25  # the width of the bars
 
 fig, ax = plt.subplots()
 rects1 = ax.bar(x - width/2, rotten_tomatoes_avg, width, label='Rotten Tomatoes')
@@ -45,10 +46,10 @@ rects2 = ax.bar(x + width/2, IMDb_avg, width, label='IMDb')
 ax.set_ylabel('Average Rating (out of 100)')
 ax.set_title('Average ratings for Movies and Shows on Popular Streaming Services')
 ax.set_xticks(x, labels)
-ax.legend()
+ax.legend( loc = 'upper right',bbox_to_anchor=(0.5, 1.15), ncol=2)
 
-ax.bar_label(rects1, padding=3)
-ax.bar_label(rects2, padding=3)
+ax.bar_label(rects1, padding=1)
+ax.bar_label(rects2, padding=1)
 
 fig.tight_layout()
 plt.show()
