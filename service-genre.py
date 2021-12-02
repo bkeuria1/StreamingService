@@ -1,16 +1,17 @@
 from typing import Collection
-from pymongo import MongoClient
+from pymongo import MongoClient, collection
 from random import randint
 import matplotlib.pyplot as plt
 import numpy as np
 from tkinter import *
 import tkinter.font as font
 from tkinter import ttk
+import pprint
 #Step 1: Connect to MongoDB - Note: Change connection string as needed
-#mongodb+srv://bkeuria1:%40BingBong3779@cluster0.oa5dd.mongodb.net/Project3?retryWrites=true&w=majority
-client = MongoClient('mongodb://localhost:27017/')
-db=client.Movies
-movies = db.movies
+client = MongoClient('mongodb+srv://eezor1:P%40lkij123@cluster0.oa5dd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+db=client.Project3
+movie_collection = db.MovieStuff
+
 
 win=Tk()
 win.title('Select a Genres')
@@ -41,22 +42,22 @@ title_label.pack(anchor='center')
 
 
 canvas.create_window((0,0),window=frame2,anchor="nw")
-Genres_services  = movies.aggregate(
+Genres_services  = movie_collection.aggregate(
     [   
     
          { "$project" : { "Split_Genres" : { "$split": ["$Genres", ","] },
            
          "Hulu": {
-             "$cond": [{"$eq":["$Hulu",1]},1,0]
+             "$cond": [{"$eq":["$Hulu",'1']},1,0]
          },
           "Netflix": {
-             "$cond": [{"$eq":["$Netflix",1]},1,0]
+             "$cond": [{"$eq":["$Netflix",'1']},1,0]
          },
            "Prime Video": {
-             "$cond": [{"$eq":["$Prime Video",1]},1,0]
+             "$cond": [{"$eq":["$Prime Video",'1']},1,0]
          },
           "Disney+": {
-             "$cond": [{"$eq":["$Disney+",1]},1,0]
+             "$cond": [{"$eq":["$Disney+",'1']},1,0]
          }
          }
          },
@@ -73,11 +74,8 @@ Genres_services  = movies.aggregate(
           },
 
         {"$sort":{'Genres':1, '_id':1}}
-       
-         
-
+            
     ]
-
 )
 
 Genres_dict= {}
@@ -96,7 +94,7 @@ def select_Genres(Genres_choice):
     service_result = np.array([value for value in service_dict.values() if value!=0])
     plot_title = Genres['_id']['Genres']+ " Movies and Shows"  +" On Prime Video, Hulu, Netflix and Disney+"
     plt.title(plot_title.format(plot_title))
-    plt.pie(service_result, labels = service_lables, autopct='%1.1f%%', shadow = True)
+    plt.pie(service_result, labels = service_lables, autopct='%1.1f%%')
     plt.show()
 
 

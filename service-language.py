@@ -11,9 +11,9 @@ from tkinter import ttk
 import threading
 #Step 1: Connect to MongoDB - Note: Change connection string as needed
 #mongodb+srv://bkeuria1:%40BingBong3779@cluster0.oa5dd.mongodb.net/Project3?retryWrites=true&w=majority
-client = MongoClient('mongodb://localhost:27017/')
-db=client.Movies
-movies = db.movies
+client = MongoClient('mongodb+srv://bkeuria1:%40BingBong3779@cluster0.oa5dd.mongodb.net/Project3?retryWrites=true&w=majority')
+db=client.Project3
+movies_collection = db.MovieStuff
 
 win=Tk()
 win.title('Select a Language')
@@ -45,22 +45,22 @@ title_label.pack(anchor='center')
 
 
 canvas.create_window((0,0),window=frame2,anchor="nw")
-language_services  = movies.aggregate(
+language_services  = movies_collection.aggregate(
     [   
     
          { "$project" : { "Split_Language" : { "$split": ["$Language", ","] },
            
          "Hulu": {
-             "$cond": [{"$eq":["$Hulu",1]},1,0]
+             "$cond": [{"$eq":["$Hulu",'1']},1,0]
          },
           "Netflix": {
-             "$cond": [{"$eq":["$Netflix",1]},1,0]
+             "$cond": [{"$eq":["$Netflix",'1']},1,0]
          },
            "Prime Video": {
-             "$cond": [{"$eq":["$Prime Video",1]},1,0]
+             "$cond": [{"$eq":["$Prime Video",'1']},1,0]
          },
           "Disney+": {
-             "$cond": [{"$eq":["$Disney+",1]},1,0]
+             "$cond": [{"$eq":["$Disney+",'1']},1,0]
          }
          }
          },
